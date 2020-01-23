@@ -2,6 +2,10 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -17,15 +21,19 @@ public class PrincipalRadio {
 	private JFrame frame;
 	private int i;
 	private JButton[] btn =new JButton[12];
-	private int a = 7;
-	private int b = 5;
+	private int a = 9;
+	private int b = 6;
 	private JButton btnAmfm;
 	private JButton btnOnoff;
 	private JButton btnavanzar;
 	private JLabel lblEmisora;
 	private JLabel lblFrecuencia;
-	
+	private JLabel radioImage;
+	private ImageIcon image;
+	private Icon iconImage;
+
 	iRadio radito = new cRadio();
+	private JLabel lblImagen;
 
 	/**
 	 * Launch the application.
@@ -58,15 +66,15 @@ public class PrincipalRadio {
 		
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(0, 0, 0));
-		frame.setBounds(100, 100, 575, 300);
+		frame.setBounds(100, 100, 581, 320);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0};
-		gridBagLayout.rowHeights = new int[]{0};
-		gridBagLayout.columnWeights = new double[]{Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 22, 25, 0, 0, 38, 40, 0, 0, 0, 0, 40};
+		gridBagLayout.rowHeights = new int[]{54, 0, 0, 0, 49, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		frame.getContentPane().setLayout(gridBagLayout);
-	
+		
 		
 		lblFrecuencia = new JLabel("AM");
 		lblFrecuencia.setForeground(Color.WHITE);
@@ -87,7 +95,7 @@ public class PrincipalRadio {
 		gbc_lblEmisora.fill = GridBagConstraints.VERTICAL;
 		gbc_lblEmisora.gridwidth = 6;
 		gbc_lblEmisora.gridheight = 2;
-		gbc_lblEmisora.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEmisora.insets = new Insets(0, 0, 5, 0);
 		gbc_lblEmisora.gridx = 12;
 		gbc_lblEmisora.gridy = 0;
 		frame.getContentPane().add(lblEmisora, gbc_lblEmisora);
@@ -99,9 +107,9 @@ public class PrincipalRadio {
 		btnOnoff.setBackground(new Color(0, 0, 0));
 		GridBagConstraints gbc_btnOnoff = new GridBagConstraints();
 		gbc_btnOnoff.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnOnoff.gridwidth = 7;
-		gbc_btnOnoff.insets = new Insets(0, 0, 5, 5);
-		gbc_btnOnoff.gridx = 10;
+		gbc_btnOnoff.gridwidth = 6;
+		gbc_btnOnoff.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOnoff.gridx = 11;
 		gbc_btnOnoff.gridy = 2;
 		frame.getContentPane().add(btnOnoff, gbc_btnOnoff);
 		
@@ -112,31 +120,36 @@ public class PrincipalRadio {
 		btnAmfm.setBackground(new Color(0, 0, 0));
 		GridBagConstraints gbc_btnAmfm = new GridBagConstraints();
 		gbc_btnAmfm.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnAmfm.gridwidth = 7;
-		gbc_btnAmfm.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAmfm.gridx = 10;
+		gbc_btnAmfm.gridwidth = 6;
+		gbc_btnAmfm.insets = new Insets(0, 0, 5, 0);
+		gbc_btnAmfm.gridx = 11;
 		gbc_btnAmfm.gridy = 3;
 		frame.getContentPane().add(btnAmfm, gbc_btnAmfm);
 		
-		radioImage = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("/rad2.gif")).getImage();
+		/**radioImage = new JLabel("");
+		Image img = new ImageIcon(this.getClass().getResource("bocina.gif")).getImage();
 		radioImage.setIcon(new ImageIcon(img));
 		GridBagConstraints gbc_radioImage = new GridBagConstraints();
-		gbc_radioImage.gridwidth = 2;
-		gbc_radioImage.gridheight = 3;
+		gbc_radioImage.gridwidth = 1;
+		gbc_radioImage.gridheight = 2;
 		gbc_radioImage.insets = new Insets(0, 0, 5, 5);
 		gbc_radioImage.gridx = 7;
 		gbc_radioImage.gridy = 1;
-		frame.getContentPane().add(radioImage, gbc_radioImage);
-		btnOnoff.setFont(new Font("Gill Sans Ultra Bold", Font.PLAIN, 20));
-		btnOnoff.setBackground(new Color(0, 0, 0));
-		GridBagConstraints gbc_btnOnoff = new GridBagConstraints();
-		gbc_btnOnoff.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnOnoff.gridwidth = 7;
-		gbc_btnOnoff.insets = new Insets(0, 0, 5, 5);
-		gbc_btnOnoff.gridx = 14;
-		gbc_btnOnoff.gridy = 2;
-		frame.getContentPane().add(btnOnoff, gbc_btnOnoff);
+		frame.getContentPane().add(radioImage, gbc_radioImage);*/
+		
+		image = new ImageIcon(getClass().getResource("bocina_1.png"));
+		iconImage = new ImageIcon(image.getImage().getScaledInstance(235,235,Image.SCALE_DEFAULT));
+		
+		lblImagen = new JLabel("");
+		lblImagen.setIcon(iconImage);
+		GridBagConstraints gbc_lblImagen = new GridBagConstraints();
+		gbc_lblImagen.gridwidth = 9;
+		gbc_lblImagen.gridheight = 7;
+		gbc_lblImagen.anchor = GridBagConstraints.SOUTHWEST;
+		gbc_lblImagen.insets = new Insets(0, 0, 5, 5);
+		gbc_lblImagen.gridx = 0;
+		gbc_lblImagen.gridy = 0;
+		frame.getContentPane().add(lblImagen, gbc_lblImagen);
 		
 		btnavanzar = new JButton(">>>");
 		btnavanzar.addActionListener(listener);
@@ -144,10 +157,10 @@ public class PrincipalRadio {
 		btnavanzar.setForeground(new Color(255, 0, 0));
 		btnavanzar.setBackground(new Color(0, 0, 0));
 		GridBagConstraints gbc_btnavanzar = new GridBagConstraints();
-		gbc_btnavanzar.insets = new Insets(0, 0, 5, 5);
+		gbc_btnavanzar.insets = new Insets(0, 0, 5, 0);
 		gbc_btnavanzar.fill = GridBagConstraints.BOTH;
-		gbc_btnavanzar.gridwidth = 7;
-		gbc_btnavanzar.gridx = 10;
+		gbc_btnavanzar.gridwidth = 6;
+		gbc_btnavanzar.gridx = 11;
 		gbc_btnavanzar.gridy = 4;
 		frame.getContentPane().add(btnavanzar, gbc_btnavanzar);
 		
@@ -164,8 +177,8 @@ public class PrincipalRadio {
 		btn[i].setForeground(new Color(255, 0, 0));
 		btn[i].setBackground(new Color(0, 0, 0));
 		if(i == 5) {
-			b = 6;
-			a = 6;}
+			b = 7;
+			a = 8;}
 		a++;
 		}
 		
