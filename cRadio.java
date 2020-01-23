@@ -11,8 +11,8 @@ public class cRadio implements iRadio{
 	private int frecuencia = 0;//Inicia en AM
 	private boolean est = true;//Inicia apagado
 	private String emi = "";
-	private double[] fmEmisoras = new double[11];
-	private int[] amEmisoras = new int[11];
+	private double[] fmEmisoras = new double[12];
+	private int[] amEmisoras = new int[12];
 	
 	
 
@@ -100,17 +100,17 @@ public class cRadio implements iRadio{
 	public void guardar(int boton) {
 		// TODO Auto-generated method stub
 		if(frecuencia == 0) {
-			if(amEmisoras[boton] == 0)
-				amEmisoras[boton] = aemisora;
+			if(amEmisoras[boton-1] == 0)
+				amEmisoras[boton-1] = aemisora;
 			else
-				aemisora = amEmisoras[boton];
+				aemisora = amEmisoras[boton-1];
 		}
 		else if(frecuencia == 1) {
-			fmEmisoras[boton] = femisora;
-			if(fmEmisoras[boton] == 0)
-				fmEmisoras[boton] = femisora;
+			fmEmisoras[boton-1] = femisora;
+			if(fmEmisoras[boton-1] == 0)
+				fmEmisoras[boton-1] = femisora;
 			else
-				femisora = fmEmisoras[boton];
+				femisora = fmEmisoras[boton-1];
 			}
 	}
 
@@ -122,10 +122,10 @@ public class cRadio implements iRadio{
 	public void seleccionarEmisora(int boton) {
 		// TODO Auto-generated method stub
 		if(frecuencia == 0) {
-			aemisora = (int) amEmisoras[boton];
+			aemisora = (int) amEmisoras[boton-1];
 		}
 		else if(frecuencia == 1)
-			femisora = fmEmisoras[boton];
+			femisora = fmEmisoras[boton-1];
 	}
 
 	

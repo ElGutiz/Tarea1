@@ -205,8 +205,8 @@ public class PrincipalRadio {
 			
 			for(i=0 ; i < 12; i++) {
 				if (e.getSource() == btn[i]) {
-					radito.guardar(i);
-					radito.seleccionarEmisora(i);
+					radito.guardar(i+1);
+					radito.seleccionarEmisora(i+1);
 					//btn[i].setText(radito.estacionActual());
 					lblEmisora.setText(radito.estacionActual());
 				}
