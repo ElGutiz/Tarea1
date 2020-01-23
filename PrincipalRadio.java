@@ -118,6 +118,26 @@ public class PrincipalRadio {
 		gbc_btnAmfm.gridy = 3;
 		frame.getContentPane().add(btnAmfm, gbc_btnAmfm);
 		
+		radioImage = new JLabel("");
+		Image img = new ImageIcon(this.getClass().getResource("/rad2.gif")).getImage();
+		radioImage.setIcon(new ImageIcon(img));
+		GridBagConstraints gbc_radioImage = new GridBagConstraints();
+		gbc_radioImage.gridwidth = 2;
+		gbc_radioImage.gridheight = 3;
+		gbc_radioImage.insets = new Insets(0, 0, 5, 5);
+		gbc_radioImage.gridx = 7;
+		gbc_radioImage.gridy = 1;
+		frame.getContentPane().add(radioImage, gbc_radioImage);
+		btnOnoff.setFont(new Font("Gill Sans Ultra Bold", Font.PLAIN, 20));
+		btnOnoff.setBackground(new Color(0, 0, 0));
+		GridBagConstraints gbc_btnOnoff = new GridBagConstraints();
+		gbc_btnOnoff.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnOnoff.gridwidth = 7;
+		gbc_btnOnoff.insets = new Insets(0, 0, 5, 5);
+		gbc_btnOnoff.gridx = 14;
+		gbc_btnOnoff.gridy = 2;
+		frame.getContentPane().add(btnOnoff, gbc_btnOnoff);
+		
 		btnavanzar = new JButton(">>>");
 		btnavanzar.addActionListener(listener);
 		btnavanzar.setFont(new Font("Gill Sans Ultra Bold", Font.BOLD, 20));
