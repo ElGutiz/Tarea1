@@ -56,25 +56,7 @@ public class cRadio implements iRadio{
 	 * avanzar
 	 * Aumenta de emisora dependiendo de la frecuencia en la cual se encuentre el radio
 	 */
-	public void avanzar() {
-		// TODO Auto-generated method stub
-		
-		if(frecuencia == 0) {
-			if(aemisora < 1610) {
-				aemisora += 10;
-				if(aemisora == 1610)
-					aemisora = 530;
-				}
-			}
-			
-		 if(frecuencia == 1) {
-				if(femisora < 107.9) {
-					femisora += 0.2;
-					if(femisora == 107.9)
-						femisora = 87.9;
-					}
-		     	}
-		}
+	
 	
 	/**
 	 * estacionActual

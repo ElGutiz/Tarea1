@@ -126,17 +126,6 @@ public class PrincipalRadio {
 		gbc_btnAmfm.gridy = 3;
 		frame.getContentPane().add(btnAmfm, gbc_btnAmfm);
 		
-		/**radioImage = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("bocina.gif")).getImage();
-		radioImage.setIcon(new ImageIcon(img));
-		GridBagConstraints gbc_radioImage = new GridBagConstraints();
-		gbc_radioImage.gridwidth = 1;
-		gbc_radioImage.gridheight = 2;
-		gbc_radioImage.insets = new Insets(0, 0, 5, 5);
-		gbc_radioImage.gridx = 7;
-		gbc_radioImage.gridy = 1;
-		frame.getContentPane().add(radioImage, gbc_radioImage);*/
-		
 		image = new ImageIcon(getClass().getResource("bocina_1.png"));
 		iconImage = new ImageIcon(image.getImage().getScaledInstance(235,235,Image.SCALE_DEFAULT));
 		
