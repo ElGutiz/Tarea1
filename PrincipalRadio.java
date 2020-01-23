@@ -170,11 +170,6 @@ public class PrincipalRadio {
 			a = 8;}
 		a++;
 		}
-		
-		for(i = 0; i < 12; i++) 
-			btn[i].setEnabled(false);
-		btnAmfm.setEnabled(false);
-		btnavanzar.setEnabled(false);
 				
 	}
 	
@@ -184,20 +179,13 @@ public class PrincipalRadio {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			
+			
 			if(e.getSource() == btnOnoff){
-				if(radito.estado() == false) {
+				radito.onOff();
 					for(i = 0; i < 12; i++) 
-						btn[i].setEnabled(false);
-					btnAmfm.setEnabled(false);
-					btnavanzar.setEnabled(false);
-					radito.onOff();	
-				}else {
-					for(i = 0; i < 12; i++) 
-						btn[i].setEnabled(true);
-					btnAmfm.setEnabled(true);
-					btnavanzar.setEnabled(true);
-					radito.onOff();	
-				}
+						btn[i].setEnabled(radito.estado());
+					btnAmfm.setEnabled(radito.estado());
+					btnavanzar.setEnabled(radito.estado());		
 			}
 			
 			
