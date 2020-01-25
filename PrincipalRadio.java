@@ -31,9 +31,11 @@ public class PrincipalRadio {
 	private JLabel radioImage;
 	private ImageIcon image;
 	private Icon iconImage;
+	private int c;
 
-	iRadio radito = new cRadio();
+	iRadio radito = new RadioLo();
 	private JLabel lblImagen;
+	private JButton btnGuardarEmisora;
 
 	/**
 	 * Launch the application.
@@ -76,7 +78,7 @@ public class PrincipalRadio {
 		frame.getContentPane().setLayout(gridBagLayout);
 		
 		
-		lblFrecuencia = new JLabel("AM");
+		lblFrecuencia = new JLabel("");
 		lblFrecuencia.setForeground(Color.WHITE);
 		lblFrecuencia.setFont(new Font("Gill Sans Ultra Bold", Font.PLAIN, 38));
 		GridBagConstraints gbc_lblFrecuencia = new GridBagConstraints();
@@ -87,7 +89,7 @@ public class PrincipalRadio {
 		gbc_lblFrecuencia.gridy = 0;
 		frame.getContentPane().add(lblFrecuencia, gbc_lblFrecuencia);
 		
-		lblEmisora = new JLabel("530");
+		lblEmisora = new JLabel("");
 		lblEmisora.setBackground(new Color(240, 240, 240));
 		lblEmisora.setForeground(Color.WHITE);
 		lblEmisora.setFont(new Font("Gill Sans Ultra Bold", Font.PLAIN, 24));
@@ -102,26 +104,39 @@ public class PrincipalRadio {
 		
 		btnOnoff = new JButton("On/Off");
 		btnOnoff.addActionListener(listener);
+		
+		btnGuardarEmisora = new JButton("Guardar");
+		btnGuardarEmisora.addActionListener(listener);
+		btnGuardarEmisora.setFont(new Font("Gill Sans Ultra Bold", Font.PLAIN, 15));
+		GridBagConstraints gbc_btnGuardarEmisora = new GridBagConstraints();
+		gbc_btnGuardarEmisora.fill = GridBagConstraints.VERTICAL;
+		gbc_btnGuardarEmisora.gridwidth = 2;
+		gbc_btnGuardarEmisora.gridheight = 2;
+		gbc_btnGuardarEmisora.insets = new Insets(0, 0, 5, 5);
+		gbc_btnGuardarEmisora.gridx = 9;
+		gbc_btnGuardarEmisora.gridy = 2;
+		frame.getContentPane().add(btnGuardarEmisora, gbc_btnGuardarEmisora);
 		btnOnoff.setFont(new Font("Gill Sans Ultra Bold", Font.PLAIN, 20));
 		btnOnoff.setForeground(new Color(255, 0, 0));
 		btnOnoff.setBackground(new Color(0, 0, 0));
 		GridBagConstraints gbc_btnOnoff = new GridBagConstraints();
 		gbc_btnOnoff.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnOnoff.gridwidth = 6;
-		gbc_btnOnoff.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOnoff.insets = new Insets(0, 0, 5, 5);
 		gbc_btnOnoff.gridx = 11;
 		gbc_btnOnoff.gridy = 2;
 		frame.getContentPane().add(btnOnoff, gbc_btnOnoff);
 		
 		btnAmfm = new JButton("AM/FM");
 		btnAmfm.addActionListener(listener);
+		btnAmfm.setEnabled(radito.estado());
 		btnAmfm.setFont(new Font("Gill Sans Ultra Bold", Font.PLAIN, 20));
 		btnAmfm.setForeground(new Color(255, 0, 0));
 		btnAmfm.setBackground(new Color(0, 0, 0));
 		GridBagConstraints gbc_btnAmfm = new GridBagConstraints();
 		gbc_btnAmfm.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnAmfm.gridwidth = 6;
-		gbc_btnAmfm.insets = new Insets(0, 0, 5, 0);
+		gbc_btnAmfm.insets = new Insets(0, 0, 5, 5);
 		gbc_btnAmfm.gridx = 11;
 		gbc_btnAmfm.gridy = 3;
 		frame.getContentPane().add(btnAmfm, gbc_btnAmfm);
@@ -142,11 +157,12 @@ public class PrincipalRadio {
 		
 		btnavanzar = new JButton(">>>");
 		btnavanzar.addActionListener(listener);
+		btnavanzar.setEnabled(radito.estado());
 		btnavanzar.setFont(new Font("Gill Sans Ultra Bold", Font.BOLD, 20));
 		btnavanzar.setForeground(new Color(255, 0, 0));
 		btnavanzar.setBackground(new Color(0, 0, 0));
 		GridBagConstraints gbc_btnavanzar = new GridBagConstraints();
-		gbc_btnavanzar.insets = new Insets(0, 0, 5, 0);
+		gbc_btnavanzar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnavanzar.fill = GridBagConstraints.BOTH;
 		gbc_btnavanzar.gridwidth = 6;
 		gbc_btnavanzar.gridx = 11;
@@ -156,6 +172,7 @@ public class PrincipalRadio {
 		for (i=0; i<12; i++){
 		btn[i]= new JButton(Integer.toString(i));
 		btn[i].addActionListener(listener);
+		btn[i].setEnabled(radito.estado());
 		btn[i].setFont(new Font("Segoe UI Emoji", Font.BOLD, 20));
 		GridBagConstraints gbc_btn1 = new GridBagConstraints();
 		gbc_btn1.fill = GridBagConstraints.BOTH;
@@ -181,13 +198,23 @@ public class PrincipalRadio {
 			
 			
 			if(e.getSource() == btnOnoff){
-				radito.onOff();
+				if(radito.estado() == false) {
+					radito.onOff();	
 					for(i = 0; i < 12; i++) 
 						btn[i].setEnabled(radito.estado());
 					btnAmfm.setEnabled(radito.estado());
-					btnavanzar.setEnabled(radito.estado());		
+					btnavanzar.setEnabled(radito.estado());
+					
+				}else {
+					radito.onOff();	
+					for(i = 0; i < 12; i++) 
+						btn[i].setEnabled(radito.estado());
+					btnAmfm.setEnabled(radito.estado());
+					btnavanzar.setEnabled(radito.estado());
+
+				}
+				lblEmisora.setText(radito.estacionActual());
 			}
-			
 			
 			if(e.getSource() == btnavanzar) {
 				radito.avanzar();
@@ -197,22 +224,29 @@ public class PrincipalRadio {
 			if(e.getSource() == btnAmfm) {
 				radito.cambiarFrecuencia();
 				lblEmisora.setText(radito.estacionActual());
-				if(lblFrecuencia.getText() == "AM")
+				/**if(lblFrecuencia.getText() == "AM")
 					lblFrecuencia.setText("FM");
 				else
-					lblFrecuencia.setText("AM");
+					lblFrecuencia.setText("AM");*/
 			}
 			
+			if(e.getSource()== btnGuardarEmisora)
+					radito.guardar(c+1);
+			
 			for(i=0 ; i < 12; i++) {
-				if (e.getSource() == btn[i]) {
-					radito.guardar(i+1);
+				if(e.getSource() == btn[i]) {
+					c = i;
 					radito.seleccionarEmisora(i+1);
-					//btn[i].setText(radito.estacionActual());
 					lblEmisora.setText(radito.estacionActual());
+				}
+					
+							
+					
+					
 				}
 			}
 		}
 		
 	}
 
-}
+

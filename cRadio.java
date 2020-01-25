@@ -9,7 +9,7 @@ public class cRadio implements iRadio{
 	private double femisora = 87.9;
 	private int aemisora = 530;
 	private int frecuencia = 0;//Inicia en AM
-	private boolean est = true;//Inicia apagado
+	private boolean est = false;//Inicia apagado
 	private String emi = "";
 	private double[] fmEmisoras = new double[12];
 	private int[] amEmisoras = new int[12];
@@ -83,13 +83,18 @@ public class cRadio implements iRadio{
 	 */
 	public String estacionActual() {
 		// TODO Auto-generated method stub
+		String msg = "";
 		DecimalFormat df = new DecimalFormat("#.0");
 		
-		if(frecuencia == 0)
+		if(frecuencia == 0) {
 			emi = String.valueOf(aemisora);
-		else if(frecuencia == 1)
+			msg = emi + "AM";
+		}
+		else if(frecuencia == 1) {
 			emi =  df.format(femisora);
-		return emi;
+			msg = emi + " AM";
+			}
+		return msg;
 	}
 
 	/**
@@ -99,6 +104,7 @@ public class cRadio implements iRadio{
 	 */
 	public void guardar(int boton) {
 		// TODO Auto-generated method stub
+		
 		if(frecuencia == 0) {
 			if(amEmisoras[boton-1] == 0)
 				amEmisoras[boton-1] = aemisora;
@@ -106,7 +112,6 @@ public class cRadio implements iRadio{
 				aemisora = amEmisoras[boton-1];
 		}
 		else if(frecuencia == 1) {
-			fmEmisoras[boton-1] = femisora;
 			if(fmEmisoras[boton-1] == 0)
 				fmEmisoras[boton-1] = femisora;
 			else
@@ -122,10 +127,16 @@ public class cRadio implements iRadio{
 	public void seleccionarEmisora(int boton) {
 		// TODO Auto-generated method stub
 		if(frecuencia == 0) {
-			aemisora = (int) amEmisoras[boton-1];
+			if(amEmisoras[boton-1] == 0)
+				aemisora = aemisora;
+			else
+				aemisora = (int) amEmisoras[boton-1];
 		}
 		else if(frecuencia == 1)
-			femisora = fmEmisoras[boton-1];
+			if(fmEmisoras[boton-1] == 0)
+				femisora = femisora;
+			else
+				femisora = fmEmisoras[boton-1];
 	}
 
 	
